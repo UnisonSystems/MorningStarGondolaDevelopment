@@ -1,0 +1,20 @@
+[Unit]
+Description=Chronoamperometry logger (12-device CNT sensor array)
+After=local-fs.target
+
+[Service]
+Type=simple
+# Adjust this path to wherever you place the three .py files:
+WorkingDirectory=/home/airborne/Documents/AIRBORNE
+ExecStart=/usr/bin/python3 /home/airborne/Documents/AIRBORNE/logger.py
+# Restart if the script crashes (e.g. transient fault) but NOT after a clean
+# stop. A brief delay avoids a tight loop if the hardware isn't connected yet.
+Restart=on-failure
+RestartSec=5
+# Running as root is the simplest way to get access to the I2C/SPI devices and
+# to the onboard-LED sysfs node. To run as the 'pi' user instead, add pi to the
+# i2c and spi groups and grant write access to /sys/class/leds/led0.
+User=root
+
+[Install]
+WantedBy=multi-user.target
