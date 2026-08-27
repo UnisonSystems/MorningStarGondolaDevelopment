@@ -35,7 +35,7 @@ from simplekml import AltitudeMode, Color, LookAt
 # Configuration / constants
 # ----------------------------------------------------------------------
 CSV_PATH = "DATALOG.CSV"
-PDF_PATH = "Flight_Report.pdf"
+PDF_PATH = os.path.join("Report", "Flight_Report.pdf")
 KMZ_PATH = os.path.join("Report", "trajectory_3d.kmz")
 MAP_PNG  = os.path.join("Report", "trajectory_snapshot.png")
 
