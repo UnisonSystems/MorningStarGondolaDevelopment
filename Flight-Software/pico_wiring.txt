@@ -1,0 +1,23 @@
+| Pico Pin              | Terminal Block | Function                  | Connected Devices                                    |
+|-----------------------|----------------|---------------------------|------------------------------------------------------|
+| MicroUSB              | —              | Power input               | Battery POSA (via rocker) + GND                      |
+| VBUS                  | TB-5V          | 5 V distribution rail     | MS5611, MAX31865, MicroSD (ADA254), BSS138 HV, etc.  |
+| GND                   | TB-GND         | Common ground             | All grounds, M_GPIO-, level shifter GND              |
+| 3V3(OUT)              | TB-3V3         | 3.3 V rail                | BNO086, SHT45, level shifter LV                      |
+| GP0 (UART0 TX)        | —              | XY-T01 #1 TX (via LV)     | BSS138 → XY-T01-1 RX                                 |
+| GP1 (UART0 RX)        | —              | XY-T01 #1 RX (via LV)     | BSS138 → XY-T01-1 TX                                 |
+| GP2 (I2C1 SDA)        | —              | Tiny4FSK dedicated SDA    | Shield SDA (Pico = slave 0x09)                       |
+| GP3 (I2C1 SCL)        | —              | Tiny4FSK dedicated SCL    | Shield SCL                                           |
+| GP4 (I2C0 SDA)        | TB-SDA         | Shared I2C SDA            | MS5611, BNO086, SHT45                                |
+| GP5 (I2C0 SCL)        | TB-SCL         | Shared I2C SCL            | MS5611, BNO086, SHT45                                |
+| GP6                   | —              | BNO086 INT                | BNO086 INT (active-low)                              |
+| GP7                   | —              | BNO086 RST                | BNO086 RST (active-low)                              |
+| GP8 (UART1 TX)        | —              | XY-T01 #2 TX (via LV)     | BSS138 → XY-T01-2 RX                                 |
+| GP9 (UART1 RX)        | —              | XY-T01 #2 RX (via LV)     | BSS138 → XY-T01-2 TX                                 |
+| GP10                  | —              | MOSFET control            | M_GPIO+                                              |
+| GP15                  | –              | Status indicator          | LED                                                  |
+| GP16 (SPI0 RX)        | TB-MISO        | SPI0 MISO                 | MAX31865 SDO, MicroSD (ADA254) MISO/DO               |
+| GP17                  | —              | MicroSD CS                | MicroSD (ADA254) CS                                  |
+| GP18 (SPI0 SCK)       | TB-SCK         | SPI0 SCK                  | MAX31865 SCK, MicroSD (ADA254) SCK/CLK               |
+| GP19 (SPI0 TX)        | TB-MOSI        | SPI0 MOSI                 | MAX31865 SDI, MicroSD (ADA254) MOSI/DI               |
+| GP20                  | —              | MAX31865 CS               | MAX31865 CS                                          |

@@ -1,0 +1,585 @@
+Quick notes on notation:
+
+I assign the names POS<A/B> and NEG<A/B> to the positive and negative lines of Outputs A/B.
+The MOSFET has 4 screw terminals: M_IN+ (power supply positive line in); M_IN- (power supply negative line in); M_OUT+ (load positive line out); M_OUT- (load negative line out). The MOSFET has 2 GPIO pins: M_GPIO+ (the logic pin); and M_GPIO- (ground).
+I refer to the ith terminal of terminal block receiving positive lines as T+<i>. I refer to the ith terminal of terminal block receiving negative lines as T-<i>.
+I refer to an arbitrary lead of the ith FG26X7R1E106KRT00 as CAP_<i>A. I refer to other lead of the ith FG26X7R1E106KRT00 as CAP_<i>B.
+
+The Battery supplies 5 V.
+
+DD0324PW-1 and DD0324PW-2 output at 12 V.
+ 
+Battery POSA connects directly to either rocker-switch terminal. Battery POSA (new wire) feeds out of the other rocker-switch terminal and connects to the MicroUSB port on the Pico. Battery NEGA connects directly to Pico GND.
+ 
+Battery POSB connects directly to M_IN+. Battery NEGB connects directly to M_IN-. M_OUT+ connects to T+0.
+ 
+T+1 connects to CAP_1A and then Shield VIN. Shield GND connects to CAP_1B and then T-1.
+ 
+T+2 connects to CAP_2A and then DD0324PW-1-IN+. DD0324PW-1-OUT+ connects to XY-T01-1-VIN. XY-T01-1-GND connects to DD0324PW-1-OUT-. DD0324PW-1-IN- connects to CAP_2B and then T-2.
+ 
+T+3 connects to CAP_3A and then DD0324PW-2-IN+. DD0324PW2-OUT+ connects to XY-T01-2-VIN. XY-T01-2-GND connects to DD0324PW-2-OUT-. DD0324PW-2-IN- connects to CAP_3B and then T-3.
+
+T+4 connects to GoPro VIN (via USB-C). GoPro- connects to T-4.
+
+T-0 connects to M_OUT-.
+ 
+Pico GP<X> connects to M_GPIO+. M_GPIO- connects to Pico GND.
+
+Pico VBUS connects to TB-5V.
+
+
+
+Balloon Type  |   Diameter at Release (m)
+----------------------------------------------------
+HAB-350       |    0.125
+HAB-350       |    
+HAB-350       |    
+HAB-350       |    
+HAB-350       |    
+HAB-350       |    
+
+
+
+37.6
+110
+26.8
+
+T-plug 13.3 x 7.6
+T-plug wires: 4 x 8
+4-pin connector: 14.74 x 8.35
+
+Battery base to port hole: 120
+
+
+
+Really need to address STTR proposal
+Need to check Ambitus
+Need to check Data Annotation
+Handover Doc
+Balloon Trajectory Tool
+Gondola:
+	- Pressure sensor
+	- Assembly
+	- Test
+
+1:53 PM EST
+6:53 PM UTC
+42.278795, -72.975588
+
+
+-55.85-7.2
+
+
+I'm designing a trajectory-prediction tool for high-altitude balloons (HAB). I'm starting from first principles where possible. For example, from Newton II, we have
+$$F = m\vec{a} = (\rho_{\text{atm}}V - m)g\hat z - \frac{1}{2}\rho_{\text{atm}}C_DA|\vec{v}-\vec{u}|(\vec{v}-\vec{u})$$
+Going through the right-hand side term-by-term...
+$\rho_{\text{atm}}$, the atmospheric density, is well known as a function of altitude.
+$V$, the balloon volume, is more difficult to predict, since it is driven by the pressure differential across the inflated balloon envelope, which subsequently depends on (1) the total amount of lifting gas in the balloon and (2) the elastic properties of the envelope—both quantities which are not easy to obtain.
+$m$, the total system mass, is easier than $V$, but still presents difficulties. In real-world applications, $m$ is a composite of masses (e.g., payload(s), rigging, balloon envelope, lifting gas). As with $V$, the mass of the lifting gas is not easily obtained.
+$g$ is the gravitational acceleration, which is extremely well known, and constant for all intents and purposes in the context of HABs.
+$C_D$ is a bit hand-wavy, but probably use 0.25–0.3.
+$A$, the reference area, is just $V$ with some extra stuff. Assuming a spherical balloon, $V = \frac{4}{3}\pi R^3\rightarrow R = \left[\frac{3V}{4\pi}\right]^{1/3}$, and $A = \pi R^2$. So, if you solve the $V$ problem, $A$ is likewise solved.
+$\vec{v}$ is the velocity of the balloon. This velocity (and, necessarily, its magnitude) will come from integration of $\vec{a}$.
+$\vec{u}$ is the local wind velocity (local implies "arbitrary point"). The atmosphere is extremely dynamic/chaotic and, of course, spans the entire planet up to hundreds of km. We rely on NOAA tools for this.
+Thoughts?
+
+
+
+
+
+NIAC Phase II announcements expected November 30, 2026.
+
+Michael Hect (scanning microscope) didn't tell Sara that his scope didn't work
+
+
+
+Sara talked to Arpita: MIT won't move gift money without permission. She's fine with moving the money. The sponsors are not happy because we haven't launched.
+
+
+
+
+I have a gondola for high-altitude ballooning. I'd like to do some thermal testing relevant to the mission environment. I've tested the gondola in a meat freezer at approximately -17 ºC, but I'll need dry ice to reach mission-relevant conditions, which can reach roughly -60 ºC. I'm thinking about how to set up this experiment (1) safely and (2) in a manner that yields roughly uniform temperature on all external surfaces of the gondola. It's fine that the ice will be at around -80 ºC instead of -60 ºC. The gondola is only around 15.75 in. wide x 13.5 in. long x 10 in. high, so I can fit it in a freezer, tote, box, or large cooler. But we should avoid conduction from the dry ice. Any thoughts on this?
+
+
+
+Schmidt partnership regarding AI?
+
+
+
+MS Word: Proprietary + Commercial (OR)
+LaTeX/Overleaf: Open-Source (OR)
+Google Docs: Proprietary + Commercial (OR)
+Etc.
+
+Check about Zoom or similar for in-person, synchronous portion
+Check about YouTube or similar for online/asynchronous portion
+
+
+
+
+
+
+
+
+Identify which activities can continue without connectivity or access to the affected technology, should the instructional materials or methods be available and/or modified to accommodate the achievement of the learning objectives and intended learner experience. If you have immersive technology and the hardware is unavailable or the Government elects not to procure or maintain it, please call out how that specific section would be impacted. 
+
+The Government is assessing your risk mitigation if technology fails. Map the intended activity to its offline alternative."
+
+
+Low Power
+Amenable to Ruggedization
+Task Handling
+
+Note that WiFi for pre-flight configuration is 100% unnecessary when the device has a built-in transmitter for downlink.
+
+
+
+So, the STM32L4 wins on the following basis:
+1. The STM32L4 is the most power-efficient and rugged MCU under consideration.
+2. The STM32L4's task isolation is only outperformed by the ESP32 and ESP32-S3, which are significantly less power efficient and rugged; similar on almost all other metrics; and only significantly outperform the STM32L4 on the quality of their toolchain & ecosystem.
+3. The STM32L4's SRAM + Flash is only marginally outperformed by the ESP32-S3 and Teensy 4.x. The ESP32-S3 is a strong contender, but the Teensy is just too hungry.
+4. The STM32L4's peripheral hardware + DMA is matched but not exceeded by the ESP32-S3, STM32F4, and Teensy 4.x. As stated in (3), the ESP32-S3 is a strong contender, but the STM32F4 and Teensy 4.x are quite hungry.
+5. The only contender which surpasses the STM32L4 in toolchain & ecosystem is the ESP32-S3, which does so comfortably and is a legitimate contender.
+6. The STM32L4 is unsurpassed by any legitimate contender when it comes to real-time/timing.
+7. The STM32L4 is marginally better than any legitimate contender when it comes to power-supply robustness.
+
+Even under the current weighted rules, the STM32L4 beats the ESP32-S3 by a point. Now, if we relax the ruggedization metric (the least important metric, due to the accommodative capacity of the gondola) to 0.5, the ESP32-S3 ties the STM32L4. In this case, the STM32L4 comfortably outperforms the ESP32-S3 in power efficiency, but the ESP32-S3 comfortably outperforms the STM32L4 in toolchain & ecosystem; all other metrics differ marginally.
+
+We could consider a heretofore unmentioned metric: cost.
+
+For what it's worth, the STM32L4 is meaningfully more expensive than the ESP32 (STM32L486QGI6 is listed at $10.04/unit vs. 356-ESP32-S3 at $1.85 on Mouser).
+
+Based on our discussion thus far, the relevant question appears to be whether the power-efficiency performance difference between the STM32L4 and ESP32-S3 justifies the 5x price gap.
+
+Check out this power table for a generic mission:
+
+
+
+
+
+
+
+The primary payload changes per flight, so we assume a hungry element relative to other non-camera peripherals. Neglecting the GoPro Max, which is obviously in a league of its own with respect to power demand, the Pico ties the ADA254 as the most power-hungry element. Suppose we swapped out the RP2040 for an STM32L4 and an ESP32-S3 (disregarding the compatibility issues). What would these subs to the Pico's power consumption? This exercise could give me a concrete feel of exactly what the STM32L4 delivers (or doesn't) over the ESP32-S3.
+
+
+MAX-M10M-00B
+MAX-M10M-20B
+MAX-M10N-00B
+MAX-M10N-10B
+MAX-M10S-00B
+
+
+MCU: STM32L476RGT3
+GPS: u-blox MAX-M10N-10B
+Radio: Semtech SX1262
+Balloon antenna: Half-wave dipole, vertical polarization
+TPH: MS5611 (Pressure + Temperature) and SHT45 (Relative Humidity + Temperature); SHT45 superior for temperature
+40 GPIO pins (copy Pico architecture)
+MicroUSB (flash + optional power input)
+
+Ground station antenna: Yagi, ~8 dBi, vertical polarization, fixed/occasional pointing on chase vehicle
+
+Outstanding tasks:
+GPIO count (to be workshopped)
+MicroSD interface
+Power architecture (battery input, regulation, monitoring, etc.)
+SX1262 RF matching network + harmonic filtering
+SX1262 TCXO
+Antenna connector (U.FL / SMA / other)
+Status LEDs / basic indicators
+GPS backup power (battery or supercap)
+
+Comment
+Double the hungriest non-camera device. Assume penalty.
+Datasheet max (active + bias)
+Datasheet active current
+Conservative continuous sensing (>> datasheet)
+Static MOSFET level-shifter
+High-end fusion mode
+Continuous heavy SD logging (below regulator max)
+Module + LCD + active relay
+Elevated max-load + peripherals
+High-end continuous recording
+2 hours + 30% margin
+30% margin
+
+Is it true that one would need to be disciplined about pin multiplexing (SPI, I2C, UART, SDMMC, etc.)? My understanding is that the LQFP-64 package is already relatively pin-constrained once power, crystal, reset, boot, SWD, and RF-related pins are accounted for (yes, I'm assuming GNSS and SX1262 onboard).
+
+
+
+% \usepackage[table,xcdraw]{xcolor}
+% Beamer presentation requires \usepackage{colortbl} instead of \usepackage[table,xcdraw]{xcolor}
+% \usepackage{tabularx}   % <-- added for wrapping columns
+% \usepackage{array}      % <-- usually loaded by tabularx; needed for the >{...} modifiers
+
+
+GENNEL: 7 g
+
+
+138.8*44.5 + 44.5*36.2
+
+
+78 cm2
+
+
+5 * 7 * 0.1 * 1.83
+
+
+6.3875
+
+
+HOOVO 2S Lipo Battery 7.6V 9000mAh 120C RC Battery Hard Case EC5 Plug 2Pack
+
+
+
+I found this LiPo pack on Amazon: "11.1V Lipo Battery 3S 5200mAh 80C Lipos Hard Case with XT60 Connector" by EMEPOVGY Store. Suppose I want to use this with a step-down converter as a stand-in for my 5 V source. By our earlier reasoning, the *energy* stored in the battery is
+$   Wh = 5.2\times 11.1 = 57.72   $
+If we convert to 5 V, then the equivalent capacity (before losses) is
+$   57.72\div 5 = 11.544\text{ Ah}   $
+or 11544 mAh. Assuming 80% efficiency, this translates to 9235.2 mAh. Do you agree with this reasoning?
+
+
+
+C*11.1/5
+
+
+0.8*7.6/5
+
+
+eta*C*V_nominal/V_out
+
+0.8 * 7600 * 11.1 / 5
+
+
+
+
+
+
+
+
+
+
+164.4 - 49.9 
+
+
+
+
+12.743 - 132.848
+
+
+120.105
+
+133 - 12.6 =120.4 
+
+
+
+
+
+
+NASA-STD-8739.4
+
+
+https://standards.nasa.gov/sites/default/files/standards/NASA/A/4/nasa-std-87394a_w_change_4_0.pdf
+
+Okay, I've done a short writeup on the problem. 
+
+
+Funktion
+
+
+
+
+
+1. SPI (Serial Peripheral Interface) is a synchronous, full-duplex serial communication protocol commonly used for short-distance communication between a microcontroller (or other master device) and peripheral devices such as sensors, displays, memory chips, and ADCs.
+	1. What does "synchronous" mean in this context? You answered this later: "A shared clock signal keeps both sides in lockstep. There is no start/stop bit overhead like UART." However, I'm still unsure:
+		1. Among whom is the clock signal shared?
+		2. What does it mean for "both sides" to be "in lockstep"?
+	2. What does "full-duplex" mean in this context? You answered this later: "Data can be sent and received at the same time."
+	3. What constitutes "short-distance"?
+2. Master-slave architecture: One master controls the bus and generates the clock. One or more slaves respond.
+	1. What is the "bus"?
+	2. What does it mean to "generate the clock", and why is this relevant?
+3. No addressing: Devices are selected by dedicated chip-select lines rather than by address bytes.
+	1. To "select" a device X basically means the master says "I am going to communicate with X and only X", yes?
+	2. A dedicated chip-select line is a physical line connecting master to slave?
+4. SCLK (Serial Clock):
+	1. "Clock generated by the master." See 2.2.
+	2. "Data is shifted on clock edges."
+		1. What does it mean to "shift data"?
+		2. What is a "clock edge"?
+	3. Are there other abbreviations for the SCLK pin?
+5. MOSI (Master Out, Slave In):
+	1. In what manner does data exist on the physical MOSI line?
+6. MISO (Master In, Slave Out):
+	1. In what manner does data exist on the physical MISO line?
+7. SS / CS (Slave Select / Chip Select):
+	1. "Active-low" means a chip is selected when the voltage drop between CS and GND is 0?
+	2. What does it mean to put its MISO line in high impedance?
+	3. Are there other abbreviations for the CS pin?
+8. Some devices support a 3-wire mode (shared MOSI/MISO), but classic SPI is 4-wire.
+	1. Intuitively, a 3-wire mode would disable synchronous capability. Is this correct?
+9. The master starts generating clock pulses on SCLK.
+	1. Characterize the clock pulses generated by the master on SCLK:
+		1. Is this signal identical in all cases for all hardware?
+		2. If the answer to 9.1.1 is "No", answer the following question with characteristic ranges where necessary:
+			1. What is the period?
+			2. What is the amplitude?
+			3. What is the shape?
+10. On each clock edge (depending on mode), both sides shift one bit...
+	1. A "clock edge" is not a physical thing. What does "on each clock edge" mean in this context?
+	2. "both sides shift one bit": See 4.2.1. 
+11. The master/slave simultaneously shifts a bit out on MOSI/MISO.
+	1. In my mental model, a given 1 or 0 became a 1 or 0 at a specific place and time, and in response to a specific event. If this is even remotely true...
+		1. From where do these bits originate?
+		2. What event triggers their generation?
+12. "Because the shift registers on the master and slave are connected in a loop during the transfer..."
+	1. What is a shift register?
+	2. What does it mean for the shift registers to be "connected in a loop"?
+13. "...every clock cycle exchanges one bit in each direction."
+	1. The usage of "clock cycle" as opposed to "unit of time" or similar seems to imply that these terms are analogous but not identical. That is, if the clock doesn't cycle, bits are not exchanged, regardless of the passage of time; in this sense, clock cycles represent simulated time. Is this correct?
+14. "If the master only wants to read data, it still must send dummy bytes (often 0x00 or 0xFF) so that the clock keeps running and the slave can shift data out."
+	1. This appears to be new information. This statement implies that the master does not have direct control over SCLK, but rather, indirect control via MOSI. Otherwise, the master could just "keep the clock running" without sending anything, correct?
+15. "Data is almost always transferred MSB first, though some devices allow LSB-first configuration."
+	1. What is MSB?
+	2. What is LSB?
+16. "CPOL (Clock Polarity): Idle state of the clock"
+	1. What does it mean for the clock to idle?
+17. "Which edge is used for sampling vs. shifting"
+	1. What is "sampling" in this context?
+	2. See 4.2.1.
+18. "Both the master and the slave must be configured for the same mode."
+	1. Are devices always/ever configurable?
+	2. How does one know the mode to which a given device is configured?
+19. Confirm that data received through a MISO/MOSI daisy chain cannot be attributed to a specific sensor (i.e., that data origin is lost in this architecture).
+20. "Very high speed possible"
+	1. Relative to what?
+21. "Full-duplex" is a strength because additional information transfer is not required to initiate and terminate communications?
+22. "Extremely simple hardware and software."
+	1. Compared to what?
+23: "No bus arbitration or addressing overhead."
+	1. What is bus arbitration?
+	2. Addressing is resolved by CS?
+24: "Requires more pins than I2C"
+	1. Evaluate my current understanding:
+		1. 4 pins are required for communication with one device, unless MISO/MOSI share a wire at the expense of synchronicity.
+		2. The number of required pins increases by 1 (CS) per device, (a) unless devices are daisy chained at the expense of slave onymity or (b) a mux is inserted between master and slaves.
+25: "No acknowledgment or built-in error detection."
+	1. What is "acknowledgement" in this context?
+26: "Limited to short distances"
+	1. Output a rule-of-thumb prohibitive distance (i.e., a distance ceiling) for SPI
+27: "Only one master is practical in the classic implementation."
+	1. Why?
+	2. Give an example, if you can, of a scenario in which multiple masters would be beneficial.
+	3. The clause "in the classic implementation" implies that SPI can be implemented in such a way that multiple masters become practical. Is this true?
+28: "SPI is frequently used with high-speed or low-latency peripherals (IMUs, high-resolution ADCs, flash memory, displays, some pressure and environmental sensors). Many modern sensors support both SPI and I2C; SPI is preferred when higher throughput or lower latency is needed, or when the I2C bus is already busy."
+	1. Contrast the terms "high-speed", "low-latency", and "high-throughput".
+	2. Your response implies that I2C is the primary competitor with SPI. Is this accurate?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Awesome. We made a ton of headway there. Follow-up response:
+1. "Your note swapped the two definitions.": Correct. That was a typo. This is resolved.
+2. "3-wire mode": My "synchronous capability" comment was a propagation of the duplex/synchronous flip error. I should have said "Intuitively, a 3-wire mode would disable full-duplex capability." You confirmed this in your response (the link becomes half-duplex), so this is resolved.
+3. "The two registers therefore form a single circulating path—a loop—of bits." For something useful to happen, transferred information must *exit* that loop. How does that happen?
+4. Regarding "dummy bytes"...
+	1. You said "almost all microcontroller SPI hardware peripherals are designed so that clock edges are generated only while a data word is being shifted out of the transmit register." What is an "SPI hardware peripheral"? Could this be, for example, a sensor whose data is being transmitted over SPI, or is this something that exists as part of the SPI framework (independent of the data generator)?
+	2. You said "[t]he dummy write is an artifact of how the peripheral is implemented..." What does "how the peripheral is implemented" mean?
+
+
+Larry Graham – Sly & the Family Stone
+Bootsy Collins – Parliament-Funkadelic
+Victor Wooten
+
+(1198 - 698)/2
+
+X→S
+
+
+Smartmiao SZ
+
+Note: It is recommended to use a current of less than 2.5A for long-term operation, and add a heat sink (output above 10W); Since it is a boost module, in order to ensure stable output, please maintain a minimum voltage difference of 1.5V
+
+
+"If the master only wants to read data, it still must send dummy bytes (often 0x00 or 0xFF) so that the clock keeps running and the slave can shift data out."
+    1. This appears to be new information. This statement implies that the master does not have direct control over SCLK, but rather, indirect control via MOSI. Otherwise, the master could just "keep the clock running" without sending anything, correct?
+
+
+min(f_{\text{sck,m}, f_{\text{sck,m}}
+
+
+LMP91000EVM
+CQRobot MCP23017 16-bit I/O Expander Module
+Electrocookie Solderable Breadboard PCB
+CD74HC4067 CMOS 16 Channel Digital Analog Multiplexer
+12 chemiresistors (each takes one wire in + one wire out)
+
+Cross-reactive sensor arrays
+Differential sensing
+
+
+I have a flight log called DATALOG.CSV in my working directory. I need to create a Python script that generates a comprehensive flight report, "Flight_Report.pdf" containing the following plots:
+Page 1:
+1. Altitude vs. Time
+Page 2:
+1. Temperature vs. Time
+2. Altitude vs. Temperature
+Page 3:
+1. Pressure vs. Time
+2. Altitude vs. Pressure
+Page 4:
+1. Humidity vs. Time
+2. Altitude vs. Humidity
+Page 5:
+1. Speed vs. Time
+2. Altitude vs. Speed
+Page 6:
+1. Ascent Rate vs. Time
+2. Altitude vs. Ascent Rate
+Page 7:
+1. Flight path 2D (see mapper2.py attached)
+2. Link to Google Earth + explanation (see mapper3d_2.py attached, which generates a proto-Flight_Report.pdf)
+
+Columns in DATALOG.CSV: <quantity> (<units>): <column number>
+Lat (degrees x 10^5): 3
+Long (degrees x 10^5): 4
+Altitude (m above sea level): 8
+Temperature (deg C): 12
+Pressure (mbar): 13
+Humidity (RH%): 21
+Speed (m/s): 10
+Hours: 5
+Minutes: 6
+Seconds: 7
+
+Note that time must be constructed:
+1. Define t0 =  (first-row hours)*60 + (first-row minutes) + (first-row seconds)/60
+2. For any row, the time is hours*60 + minutes + seconds/60 - t0
+
+Plot specifics:
+1. No titles
+2. Label axes as <quantity> (<units>)
+3. Don't allow x-increments or y-increments to become excessively large, but also don't flood the plots with ticks.
+4. For the 2D flight path, include no title, no axis labels---nothing but the image.
+5. Note that the 3D trajectory does not get plotted in the PDF. We just create the KMZ, link the user to Google Earth, and explain how to upload/interact with the trajectory.
+
+If you need more information in order to generate the script, let me know what you need before attempting a solution. Otherwise, have at it.
+
+
+
+Title: How to Launch a High Altitude Balloon
+Author: Habtronics
+Last Updated: July 2026
+Link: https://docs.google.com/document/d/e/2PACX-1vTHzam3NZknYssoTlnVG-I9p8UfS4e-8QlCTdtmzxdHeih_sm_SeeOmOQjUd_ksp9qEUEnXfDMQA7ZZ/pub
+
+
+Import file to map project
+Upload from device
+
+
+
+The plots are looking excellent. We're going to make an important modification, however. We wish to distinguish values measured during ascent from values measured during descent. The strategy is straightforward:
+1. Identify the maximum value of altitude. The row containing this value divides the CSV into "ascent" and "descent" values.
+2. Plot "ascent" values in blue. Plot "descent" values in red.
+
+
+
+
+1. Heritage flight software (complete source code archive from OG project)
+2. New stuff:
+	a. Updated flight software
+	b. Entirely new benchtop testing software
+	c. Data analysis software for (a) and (c) 
+3. STL files for 3D printed components
+
+
+
+├
+
+
+|__
+├
+
+
+├── Flight-Software/              # updated Arduino (C++) flight software
+
+
+
+Need "0000_flight_log.bin" in Analysis/Testing/
+Need Unison Systems' handover doc in Handover-Docs
+Need full Flight-Software/
+
+
+
+
+In code, we command the Pico to drive a PWM ramp on GP10 from 0\% → 100\% over roughly 300 ms (software soft-start), which delivers power to both MOSFET switches, subsequently connecting all loads to their respective batteries.
+
+−32,768 to 32,767
+
+0.03125
+
+MAX31865 temp 
+SHT45 temp
+MS5611 temp
+XY-T01 #1 temp
+XY-T01 #2 temp
+MS5611 pressure
+SHT45 humidity.
+
+(-80 to +60 deg C)
+
+Exact new CSV / packet field order
+After deleting every CNT* column, what is the precise ordered list of columns the downlink packet must supply (especially relative to the retained Callsign…Batt and the BME280 Temp/Pressure/Humidity that stay on the Tiny4FSK side)? Please give the full desired column order including the 7 new fields with the exact names you want in the CSV.
+
+
+
+Callsign,Packet,Lat,Lon,Hours,Minutes,Seconds,Alt,AscentRate,Speed,Sats,Batt,T-BME280,T-MAX31865,T-SHT45,T-MS5611,T-XYT011,T-XYT012,P-BME280,P-MS5611,H-BME280,H-SHT45
+
+Explicit mapping:
+T-BME280: Temperature reported by the BME280
+T-MAX31865: Temperature reported by the MAX31865
+T-SHT45: Temperature reported by the SHT45
+T-MS5611: Temperature reported by the MS5611
+T-XYT011: Temperature reported by the XY-T01 #1
+T-XYT012: Temperature reported by the XY-T01 #2
+P-BME280: Pressure reported by the BME280
+P-MS5611: Pressure reported by the GY-63 MS5611
+H-BME280: Relative humidity reported by the BME280
+H-SHT45: Relative humidity reported by the SHT45
+
+SD logging scope
+Implement the exact cooperative sampling rates, double-buffer (2×24 KB), binary packed records (BnoRecord / SuiteRecord / XyRecord), global sequence, flush-on-80%-or-2 s, SPI bus recovery, and filename scheme from test_main.ino?
+Duration: fixed 2 h (as in the test sketch), indefinite until power loss, or configurable?
+Should the binary log also capture the values being offered for downlink, or strictly the high-rate science records (BNO only on SD)?
+
+XY-T01 control policy
+Keep the exact open-loop startup sequence from test_main.ino (S:100 for ~2 s → S:000 for 1 s → S:020 held for the rest of the flight) plus continuous non-blocking UART parsing, or implement closed-loop set-point control driven by the measured temperatures?
+
+Additional telemetry / status in the I2C packet or logs
+Any other values desired (Pico-side battery voltage via ADC, sensor health / fault flags, sequence numbers, free RAM, MOSFET state, etc.)?
+
+Code organization & environment
+Preference for multi-file modular structure (like the original MIT-Pico with pinout.h, sensor helpers, etc.) versus a cleaner single-sketch + helper-files style closer to test_main.ino? Any required Arduino-Pico core version, specific library versions (Adafruit BNO08x / MAX31865 / SHT4x, MS5611, etc.), or other constraints?
+
+Power sequencing
+Confirm that GP10 (MOSFET) is driven HIGH early in setup() to enable the 12 V rails for both XY-T01 heaters (and the Shield) and remains asserted for the entire flight. Any other power-up / power-down sequencing needed?
+
+
+
+Regarding Q9: this is a very important question, as I omitted important information in my original prompt. First, to the question, yes: GP10 (MOSFET) is driven HIGH early in setup() to enable (1) the 12 V source for both XL6019s and (2) the 5V rail servicing the Shield, GoPro, and XY-T01s. After this, GP10 remains asserted for the entire flight. No other power-up / power-down sequencing needed *after the original power-up*. However, I should have stated the manner in which GP10 is to be driven on startup: In code, we command the Pico to drive a PWM ramp on GP10 from 0\% → 100\% over roughly 300 ms (software soft-start), which delivers power to both MOSFET switches, subsequently connecting all loads to their respective batteries. Any questions about this?
+
+
+
+
+
